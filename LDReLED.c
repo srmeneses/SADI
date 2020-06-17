@@ -1,7 +1,7 @@
 #include <ADuC842.H>
 #include <stdio.h>
 
-//--------- Variáveis ------------------
+//--------- VariÃ¡veis ------------------
 //Duty
 unsigned int Duty = 0;
 float Duty_Cycle = 0;
@@ -18,7 +18,7 @@ unsigned int bufferad = 0;
 unsigned int temp = 0;
 unsigned int i = 0;
 
-//--------- Funções ------------------
+//--------- FunÃ§Ãµes ------------------
 //Sensores 
 void ler_temperatura(void);
 void ler_luminosidade(void);
@@ -58,7 +58,7 @@ void main(void){
 		ativa_led_flag(); // Atuador
 	}
 }
-//--------- Configurações Iniciais ------------------
+//--------- ConfiguraÃ§Ãµes Iniciais ------------------
 void configura_serial(void){
 	T3CON = 0x85;
 	T3FD = 0x2d;
@@ -76,11 +76,11 @@ void configura_timer(void){
 	IEIP2 = 0x44;
 	EA = 1;
 }
-//--------- Funções Serial - Timer ------------------
+//--------- FunÃ§Ãµes Serial - Timer ------------------
 void TIC_int () interrupt 10{
 	printf("{\"Luz\" : %f, \"Temperatura\" : %f}\n",luminosidade, temperatura);
 }
-//--------- Funções dos Sensores ------------------
+//--------- FunÃ§Ãµes dos Sensores ------------------
 void ler_temperatura(){
   for(i = 0; i<16; i++){
 		ADCCON2 = (ADCCON2 & 0xF0) | 0x07;
@@ -107,9 +107,8 @@ void ler_luminosidade(){
 	temp = 0;
 	luminosidade = valor_ad*0.00061035;
 }
-//--------- Funções de Atuadores ------------------
 
-//--------- Funções de Controle ------------------
+//--------- FunÃ§Ãµes de Controle ------------------
 void controle_PWM(){
  	Duty = (valor_ad * 65535)/4095; 
  	PWM0H = Duty >> 8;
@@ -122,6 +121,6 @@ void ativa_led_flag(){
 	  P3_4 = 0;
 	}
 	else{
-		P3_4 = 1;
+	  P3_4 = 1;
 	}
 }
