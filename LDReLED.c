@@ -1,6 +1,7 @@
 #include <ADuC842.H>
 #include <stdio.h>
 
+float CONVERTION = 0.00061035;
 //--------- Variáveis ------------------
 //Duty
 unsigned int Duty = 0;
@@ -92,7 +93,7 @@ void ler_temperatura(){
 	}
 	valor_ad = (temp/16);
 	temp = 0;
-	temperatura = valor_ad*0.00061035;
+	temperatura = valor_ad * CONVERTION;
 }
 void ler_luminosidade(){
 	for(i = 0; i<16; i++){
@@ -105,7 +106,7 @@ void ler_luminosidade(){
 	}
 	valor_ad = (temp/16);
 	temp = 0;
-	luminosidade = valor_ad*0.00061035;
+	luminosidade = valor_ad * CONVERTION;
 }
 
 //--------- Funções de Controle ------------------
